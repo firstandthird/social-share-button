@@ -2,14 +2,14 @@
   "name": "social-share-button",
   "version": "1.4.0",
   "description": "Sharing button behaviour.",
-  "main": "dist/social-share-button.js",
-  "module": "lib/social-share-button.js",
+  "main": "index.js",
+  "module": "dist/social-share-button.esm.js",
   "scripts": {
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
     "test": "echo \"No tests available\"",
-    "prepublish": "scriptkit"
+    "prepublishOnly": "scriptkit"
   },
   "repository": {
     "type": "git",
@@ -26,14 +26,9 @@
   },
   "homepage": "https://github.com/firstandthird/social-share-button#readme",
   "devDependencies": {
-    "eslint-config-firstandthird": "3.2.0",
-    "eslint-plugin-import": "^2.7.0",
-    "phantomjs-prebuilt": "2.1.15",
-    "scriptkit": "0.2.0",
-    "static-server": "^2.0.5",
-    "tap-spec": "^4.1.1",
-    "tape-rollup": "4.6.4",
-    "tape-run": "^3.0.0"
+    "eslint-config-firstandthird": "^4.3.0",
+    "eslint-plugin-import": "^2.16.0",
+    "scriptkit": "^2.0.3"
   },
   "eslintConfig": {
     "env": {
@@ -42,19 +37,18 @@
     "extends": "firstandthird"
   },
   "scriptkit": {
-    "files": {
-      "dist/social-share-button.js": "lib/social-share-button.js"
+    "test": {
+      "enabled": false
     },
-    "scripts": {
-      "babel": {
-        "exclude": [
-          "node_modules/tape-rollup/*"
-        ]
-      }
+    "serve": {
+      "enabled": true
+    },
+    "files": {
+      "dist/social-share-button.js": "index.js"
     }
   },
   "dependencies": {
-    "domassist": "^1.9.0",
-    "domodule": "^5.1.3"
+    "domassist": "^2.0.2",
+    "domodule": "^6.0.0"
   }
 }
