@@ -1,6 +1,6 @@
 # Social Share Buttons
 
-<span class="social-share-button-npmversion"><a href="https://npmjs.org/package/social-share-button" title="View this project on NPM"><img src="https://img.shields.io/npm/v/social-share-button.svg" alt="NPM version" /></a></span>
+![npm](https://img.shields.io/npm/v/social-share-button.svg)
 
 Social sharing buttons for [Domodule](https://github.com/firstandthird/domodule).
 
@@ -25,12 +25,12 @@ npm i social-share-button
 
 It supports the following sharing methods:
 
-  * Email: `email`
-  * GPlus: `gplus`
-  * LinkedIn: `linkedin`
-  * Facebook: `facebook`
-  * Twitter: `twitter`
-  
+* Email: `email`
+* GPlus: `gplus`
+* LinkedIn: `linkedin`
+* Facebook: `facebook`
+* Twitter: `twitter`
+
 They're controlled with the `data-module-net` option.
 
 ## ShareUrl
@@ -61,7 +61,7 @@ They're controlled with the `data-module-net` option.
 
 ### Facebook Options
 
-Have in mind that facebook needs [OG tags](https://developers.facebook.com/docs/sharing/webmasters/) for the post to be formatted correctly. 
+Have in mind that facebook needs [OG tags](https://developers.facebook.com/docs/sharing/webmasters/) for the post to be formatted correctly.
 
 | Option     | Default       | Description                                                 |
 |------------|---------------|--------------------------------------------------------|
