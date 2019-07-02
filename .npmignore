@@ -8,3 +8,4 @@ test/*
 .editorconfig
 .node-version
 .travis.yml
+example
