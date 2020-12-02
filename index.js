@@ -8,7 +8,8 @@ const BASE_URLS = {
   facebook: 'https://www.facebook.com/sharer/sharer.php',
   gplus: 'https://plus.google.com/share',
   linkedin: 'https://www.linkedin.com/shareArticle',
-  pinterest: 'https://pinterest.com/pin/create/button'
+  pinterest: 'https://pinterest.com/pin/create/button',
+  reddit: 'https://reddit.com/submit'
 };
 
 export default class SocialShareButton extends Domodule {
@@ -73,6 +74,10 @@ export default class SocialShareButton extends Domodule {
 
   pinterestShare() {
     SocialShareButton.openWindow(this.el.href, '600', '600', 'pinterestWindow');
+  }
+
+  redditShare() {
+    SocialShareButton.openWindow(this.el.href, '600', '600', 'redditWindow');
   }
 
   facebookShare() {
@@ -183,6 +188,20 @@ export default class SocialShareButton extends Domodule {
     }
 
     this.el.href = `${BASE_URLS.pinterest}?${params.join('&')}`;
+  }
+
+  redditSetup() {
+    const shareTitle = this.options.title;
+
+    const params = [
+      `url=${encodeURIComponent(this.getShareUrl())}`
+    ];
+
+    if (shareTitle) {
+      params.push(`title=${encodeURIComponent(shareTitle)}`);
+    }
+
+    this.el.href = `${BASE_URLS.reddit}?${params.join('&')}`;
   }
 
   static getMeta(tag, prop = 'og') {
