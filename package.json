@@ -1,6 +1,6 @@
 {
   "name": "social-share-button",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Sharing button behaviour.",
   "main": "index.js",
   "module": "dist/social-share-button.js",
