@@ -25,9 +25,13 @@
     "url": "https://github.com/firstandthird/social-share-button/issues"
   },
   "homepage": "https://github.com/firstandthird/social-share-button#readme",
+  "dependencies": {
+    "domassist": "^2.2.0",
+    "domodule": "^8.0.0"
+  },
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.4.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-config-firstandthird": "^6.0.2",
+    "eslint-plugin-import": "^2.22.1",
     "scriptkit": "^3.0.0"
   },
   "eslintConfig": {
@@ -46,9 +50,5 @@
     "files": {
       "dist/social-share-button.js": "index.js"
     }
-  },
-  "dependencies": {
-    "domassist": "^2.2.0",
-    "domodule": "^6.1.0"
   }
 }
