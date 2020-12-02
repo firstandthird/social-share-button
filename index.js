@@ -1,4 +1,4 @@
-/*global FB */
+/* global FB */
 
 import Domodule from 'domodule';
 import { findOne, on } from 'domassist';
@@ -7,7 +7,9 @@ const BASE_URLS = {
   twitter: 'https://twitter.com/intent/tweet',
   facebook: 'https://www.facebook.com/sharer/sharer.php',
   gplus: 'https://plus.google.com/share',
-  linkedin: 'https://www.linkedin.com/shareArticle'
+  linkedin: 'https://www.linkedin.com/shareArticle',
+  pinterest: 'https://pinterest.com/pin/create/button',
+  reddit: 'https://reddit.com/submit'
 };
 
 export default class SocialShareButton extends Domodule {
@@ -24,8 +26,8 @@ export default class SocialShareButton extends Domodule {
     }
 
     if (this[shareMethod]) {
-      on(this.el, 'click', e => {
-        e.preventDefault();
+      on(this.el, 'click', event => {
+        event.preventDefault();
         this[shareMethod]();
       });
     }
@@ -68,6 +70,14 @@ export default class SocialShareButton extends Domodule {
 
   linkedinShare() {
     SocialShareButton.openWindow(this.el.href, '520', '570', 'linkedinWindow');
+  }
+
+  pinterestShare() {
+    SocialShareButton.openWindow(this.el.href, '600', '600', 'pinterestWindow');
+  }
+
+  redditShare() {
+    SocialShareButton.openWindow(this.el.href, '600', '600', 'redditWindow');
   }
 
   facebookShare() {
@@ -139,9 +149,9 @@ export default class SocialShareButton extends Domodule {
   }
 
   twitterSetup() {
-    const shareText = this.options.text || SocialShareButton.getTwiMeta('text');
-    const shareTag = this.options.tags || SocialShareButton.getTwiMeta('hashtag');
-    const shareVia = this.options.via || SocialShareButton.getTwiMeta('author');
+    const shareText = this.options.text || SocialShareButton.getMeta('text', 'twi');
+    const shareTag = this.options.tags || SocialShareButton.getMeta('hashtag', 'twi');
+    const shareVia = this.options.via || SocialShareButton.getMeta('author', 'twi');
     const params = [];
 
     params.push(`url=${encodeURIComponent(this.getShareUrl())}`);
@@ -161,8 +171,41 @@ export default class SocialShareButton extends Domodule {
     this.el.href = `${BASE_URLS.twitter}?${params.join('&')}`;
   }
 
-  static getTwiMeta(tag) {
-    const meta = findOne(`meta[property="twi:${tag}"]`);
+  pinterestSetup() {
+    const shareTitle = this.options.title || SocialShareButton.getMeta('title');
+    const shareMedia = this.options.media || SocialShareButton.getMeta('image');
+
+    const params = [
+      `url=${encodeURIComponent(this.getShareUrl())}`
+    ];
+
+    if (shareTitle) {
+      params.push(`description=${encodeURIComponent(shareTitle)}`);
+    }
+
+    if (shareMedia) {
+      params.push(`media=${encodeURIComponent(shareMedia)}`);
+    }
+
+    this.el.href = `${BASE_URLS.pinterest}?${params.join('&')}`;
+  }
+
+  redditSetup() {
+    const shareTitle = this.options.title;
+
+    const params = [
+      `url=${encodeURIComponent(this.getShareUrl())}`
+    ];
+
+    if (shareTitle) {
+      params.push(`title=${encodeURIComponent(shareTitle)}`);
+    }
+
+    this.el.href = `${BASE_URLS.reddit}?${params.join('&')}`;
+  }
+
+  static getMeta(tag, prop = 'og') {
+    const meta = findOne(`meta[property="${prop}:${tag}"]`);
     return meta ? meta.getAttribute('content') : null;
   }
 
