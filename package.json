@@ -9,7 +9,8 @@
     "dev": "scriptkit dev",
     "build": "scriptkit build",
     "test": "echo \"No tests available\"",
-    "prepublishOnly": "scriptkit"
+    "lint": "npx eslint index.js",
+    "prepublishOnly": "npm run lint && scriptkit"
   },
   "repository": {
     "type": "git",
