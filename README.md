@@ -1,7 +1,7 @@
 # Social Share Buttons
 
 ![npm](https://img.shields.io/npm/v/social-share-button.svg?style=for-the-badge)
-![npm](https://img.shields.io/github/workflow/status/firstandthird/social-share-button/Lint/main?label=Lint&style=for-the-badge)
+![npm](https://img.shields.io/github/workflow/status/firstandthird/social-share-button/Lint?label=Lint&style=for-the-badge)
 
 Social sharing buttons for [Domodule](https://github.com/firstandthird/domodule).
 
