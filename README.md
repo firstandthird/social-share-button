@@ -1,13 +1,22 @@
 # Social Share Buttons
 
-![npm](https://img.shields.io/npm/v/social-share-button.svg)
+<div align="center">
+  ![npm](https://img.shields.io/npm/v/social-share-button.svg?style=for-the-badge)
+  ![npm](https://img.shields.io/github/workflow/status/firstandthird/social-share-button/Lint/main?label=Lint&style=for-the-badge)
+</div>
 
 Social sharing buttons for [Domodule](https://github.com/firstandthird/domodule).
 
 ## Installation
 
 ```sh
-npm i social-share-button
+npm install social-share-button
+```
+
+_or_
+
+```sh
+yarn add social-share-button
 ```
 
 ## Usage
@@ -17,11 +26,11 @@ npm i social-share-button
 ```html
 <body>
   <a data-module="SocialShareButton"
-         data-module-text="No water in mars yet"
-         data-module-tags="not,awesome"
-         data-module-via="NASA"
-         data-module-base-url="https://firstandthird.com/"
-         data-module-net="twitter">Share on Twitter custom all</a>
+     data-module-text="No water in mars yet"
+     data-module-tags="not,awesome"
+     data-module-via="NASA"
+     data-module-base-url="https://firstandthird.com/"
+     data-module-net="twitter">Share on Twitter custom all</a>
 </body>
 ```
 
@@ -90,3 +99,9 @@ Have in mind that facebook needs [OG tags](https://developers.facebook.com/docs/
 | Option     | Default       | Description                                                 |
 |------------|---------------|--------------------------------------------------------|
 | `title` | N/A | Reddit post title. |
+
+---
+
+<a href="https://firstandthird.com" target="_blank" rel="noreferrer"><img src="https://firstandthird.com/_static/ui/images/safari-pinned-tab-62813db097.svg" height="32" width="32" align="right"></a>
+
+_A [First+Third](https://firstandthird.com) Project_
