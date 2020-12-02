@@ -12,6 +12,8 @@ npm i social-share-button
 
 ## Usage
 
+### HTML
+
 ```html
 <body>
   <a data-module="SocialShareButton"
@@ -23,6 +25,12 @@ npm i social-share-button
 </body>
 ```
 
+### JavaScript
+
+```js
+import 'social-share-button';
+```
+
 It supports the following sharing methods:
 
 * Email: `email`
@@ -30,6 +38,8 @@ It supports the following sharing methods:
 * LinkedIn: `linkedin`
 * Facebook: `facebook`
 * Twitter: `twitter`
+* Pinterest: `pinterest`
+* Reddit: `reddit`
 
 They're controlled with the `data-module-net` option.
 
@@ -67,3 +77,16 @@ Have in mind that facebook needs [OG tags](https://developers.facebook.com/docs/
 |------------|---------------|--------------------------------------------------------|
 | `tag` | N/A | Post's tags. |
 | `text` | N/A | Post's text. Note that due to facebook limitation's this is seen as a byline rather than as text. |
+
+### Pinterest Options
+
+| Option     | Default       | Description                                                 |
+|------------|---------------|--------------------------------------------------------|
+| `title` | N/A | Pin title |
+| `media` | `<meta property="og:image" content="">` content's value | Pin image |
+
+### Reddit Options
+
+| Option     | Default       | Description                                                 |
+|------------|---------------|--------------------------------------------------------|
+| `title` | N/A | Reddit post title. |
