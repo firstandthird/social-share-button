@@ -1,15 +1,15 @@
 /* global FB */
 
-import Domodule from 'domodule';
-import { findOne, on } from 'domassist';
+import Domodule from "domodule";
+import { findOne, on } from "domassist";
 
 const BASE_URLS = {
-  twitter: 'https://twitter.com/intent/tweet',
-  facebook: 'https://www.facebook.com/sharer/sharer.php',
-  gplus: 'https://plus.google.com/share',
-  linkedin: 'https://www.linkedin.com/shareArticle',
-  pinterest: 'https://pinterest.com/pin/create/button',
-  reddit: 'https://reddit.com/submit'
+  twitter: "https://twitter.com/intent/tweet",
+  facebook: "https://www.facebook.com/sharer/sharer.php",
+  gplus: "https://plus.google.com/share",
+  linkedin: "https://www.linkedin.com/shareArticle",
+  pinterest: "https://pinterest.com/pin/create/button",
+  reddit: "https://reddit.com/submit",
 };
 
 export default class SocialShareButton extends Domodule {
@@ -18,7 +18,9 @@ export default class SocialShareButton extends Domodule {
     const shareMethod = `${this.options.net}Share`;
 
     if (!this[shareMethod] && !this[setupMethod]) {
-      throw new Error(`Sharing method for ${this.options.net} is not implemented`);
+      throw new Error(
+        `Sharing method for ${this.options.net} is not implemented`
+      );
     }
 
     if (this[setupMethod]) {
@@ -26,7 +28,7 @@ export default class SocialShareButton extends Domodule {
     }
 
     if (this[shareMethod]) {
-      on(this.el, 'click', event => {
+      on(this.el, "click", (event) => {
         event.preventDefault();
         this[shareMethod]();
       });
@@ -35,14 +37,14 @@ export default class SocialShareButton extends Domodule {
 
   get required() {
     return {
-      options: ['net']
+      options: ["net"],
     };
   }
 
   get defaults() {
     return {
       relative: false,
-      baseUrl: false
+      baseUrl: false,
     };
   }
 
@@ -61,31 +63,33 @@ export default class SocialShareButton extends Domodule {
   }
 
   gplusShare() {
-    SocialShareButton.openWindow(this.el.href, '600', '500', 'gplusWindow');
+    SocialShareButton.openWindow(this.el.href, "gplusWindow");
   }
 
   twitterShare() {
-    SocialShareButton.openWindow(this.el.href, '260', '500', 'twitterWindow');
+    SocialShareButton.openWindow(this.el.href, "twitterWindow");
   }
 
   linkedinShare() {
-    SocialShareButton.openWindow(this.el.href, '520', '570', 'linkedinWindow');
+    SocialShareButton.openWindow(this.el.href, "linkedinWindow");
   }
 
   pinterestShare() {
-    SocialShareButton.openWindow(this.el.href, '600', '600', 'pinterestWindow');
+    SocialShareButton.openWindow(this.el.href, "pinterestWindow");
   }
 
   redditShare() {
-    SocialShareButton.openWindow(this.el.href, '600', '600', 'redditWindow');
+    SocialShareButton.openWindow(this.el.href, "redditWindow");
   }
 
   facebookShare() {
-    if (typeof window.FB !== 'undefined' &&
-      typeof window.FB.ui !== 'undefined') {
+    if (
+      typeof window.FB !== "undefined" &&
+      typeof window.FB.ui !== "undefined"
+    ) {
       const object = {
-        method: 'share',
-        href: this.getShareUrl()
+        method: "share",
+        href: this.getShareUrl(),
       };
 
       if (this.options.tag) {
@@ -98,7 +102,12 @@ export default class SocialShareButton extends Domodule {
 
       FB.ui(object);
     } else {
-      SocialShareButton.openWindow(this.el.href, '440', '600', 'facebookWindow');
+      SocialShareButton.openWindow(
+        this.el.href,
+        "440",
+        "600",
+        "facebookWindow"
+      );
     }
   }
 
@@ -113,12 +122,12 @@ export default class SocialShareButton extends Domodule {
       params.push(`quote=${encodeURIComponent(this.options.text)}`);
     }
 
-    this.el.href = `${BASE_URLS.facebook}?${params.join('&')}`;
+    this.el.href = `${BASE_URLS.facebook}?${params.join("&")}`;
   }
 
   emailSetup() {
     const title = encodeURIComponent(this.options.subject || document.title);
-    let body = this.options.body || 'Check this out #url';
+    let body = this.options.body || "Check this out #url";
     body = body.replace(/#url/gi, this.getShareUrl());
     body = encodeURIComponent(body);
 
@@ -130,9 +139,7 @@ export default class SocialShareButton extends Domodule {
   }
 
   linkedinSetup() {
-    const params = [
-      `url=${encodeURIComponent(this.getShareUrl())}`
-    ];
+    const params = [`url=${encodeURIComponent(this.getShareUrl())}`];
 
     const shareText = this.options.text;
     const shareTitle = this.options.title;
@@ -145,13 +152,16 @@ export default class SocialShareButton extends Domodule {
       params.push(`title=${encodeURIComponent(shareTitle)}`);
     }
 
-    this.el.href = `${BASE_URLS.linkedin}?mini=true&${params.join('&')}`;
+    this.el.href = `${BASE_URLS.linkedin}?mini=true&${params.join("&")}`;
   }
 
   twitterSetup() {
-    const shareText = this.options.text || SocialShareButton.getMeta('text', 'twi');
-    const shareTag = this.options.tags || SocialShareButton.getMeta('hashtag', 'twi');
-    const shareVia = this.options.via || SocialShareButton.getMeta('author', 'twi');
+    const shareText =
+      this.options.text || SocialShareButton.getMeta("text", "twi");
+    const shareTag =
+      this.options.tags || SocialShareButton.getMeta("hashtag", "twi");
+    const shareVia =
+      this.options.via || SocialShareButton.getMeta("author", "twi");
     const params = [];
 
     params.push(`url=${encodeURIComponent(this.getShareUrl())}`);
@@ -160,24 +170,22 @@ export default class SocialShareButton extends Domodule {
       params.push(`text=${encodeURIComponent(shareText)}`);
     }
 
-    if (shareTag && shareTag !== 'none') {
+    if (shareTag && shareTag !== "none") {
       params.push(`hashtags=${encodeURIComponent(shareTag)}`);
     }
 
-    if (shareVia && shareVia !== 'none') {
+    if (shareVia && shareVia !== "none") {
       params.push(`via=${encodeURIComponent(shareVia)}`);
     }
 
-    this.el.href = `${BASE_URLS.twitter}?${params.join('&')}`;
+    this.el.href = `${BASE_URLS.twitter}?${params.join("&")}`;
   }
 
   pinterestSetup() {
-    const shareTitle = this.options.title || SocialShareButton.getMeta('title');
-    const shareMedia = this.options.media || SocialShareButton.getMeta('image');
+    const shareTitle = this.options.title || SocialShareButton.getMeta("title");
+    const shareMedia = this.options.media || SocialShareButton.getMeta("image");
 
-    const params = [
-      `url=${encodeURIComponent(this.getShareUrl())}`
-    ];
+    const params = [`url=${encodeURIComponent(this.getShareUrl())}`];
 
     if (shareTitle) {
       params.push(`description=${encodeURIComponent(shareTitle)}`);
@@ -187,34 +195,30 @@ export default class SocialShareButton extends Domodule {
       params.push(`media=${encodeURIComponent(shareMedia)}`);
     }
 
-    this.el.href = `${BASE_URLS.pinterest}?${params.join('&')}`;
+    this.el.href = `${BASE_URLS.pinterest}?${params.join("&")}`;
   }
 
   redditSetup() {
     const shareTitle = this.options.title;
 
-    const params = [
-      `url=${encodeURIComponent(this.getShareUrl())}`
-    ];
+    const params = [`url=${encodeURIComponent(this.getShareUrl())}`];
 
     if (shareTitle) {
       params.push(`title=${encodeURIComponent(shareTitle)}`);
     }
 
-    this.el.href = `${BASE_URLS.reddit}?${params.join('&')}`;
+    this.el.href = `${BASE_URLS.reddit}?${params.join("&")}`;
   }
 
-  static getMeta(tag, prop = 'og') {
+  static getMeta(tag, prop = "og") {
     const meta = findOne(`meta[property="${prop}:${tag}"]`);
-    return meta ? meta.getAttribute('content') : null;
+    return meta ? meta.getAttribute("content") : null;
   }
 
-  static openWindow(url, height, width, key) {
-    window.open(
-      url,
-      key,
-      `menubar=no,toolbar=no,left=200,top=200,resizable=yes,scrollbars=no,height=${height},width=${width}`);
+  static openWindow(url, key) {
+    window.open(url, key);
+    window.focus();
   }
 }
 
-Domodule.register('SocialShareButton', SocialShareButton);
+Domodule.register("SocialShareButton", SocialShareButton);

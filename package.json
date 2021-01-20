@@ -31,6 +31,7 @@
     "domodule": "^8.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
     "eslint-config-firstandthird": "^6.0.2",
     "eslint-plugin-import": "^2.22.1",
     "scriptkit": "^3.0.0"
