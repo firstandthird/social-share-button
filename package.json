@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/firstandthird/social-share-button#readme",
   "dependencies": {
-    "domassist": "^2.2.0",
-    "domodule": "^8.0.0"
+    "domassist": "2.3.2",
+    "domodule": "^8.1.0"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "^6.0.2",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-config-firstandthird": "^6.0.3",
+    "eslint-plugin-import": "^2.29.1",
     "scriptkit": "^3.0.0"
   },
   "eslintConfig": {
