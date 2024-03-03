@@ -6,7 +6,6 @@ import { findOne, on } from 'domassist';
 const BASE_URLS = {
   twitter: 'https://twitter.com/intent/tweet',
   facebook: 'https://www.facebook.com/sharer/sharer.php',
-  gplus: 'https://plus.google.com/share',
   linkedin: 'https://www.linkedin.com/shareArticle',
   pinterest: 'https://pinterest.com/pin/create/button',
   reddit: 'https://reddit.com/submit'
@@ -58,10 +57,6 @@ export default class SocialShareButton extends Domodule {
     }
 
     return url;
-  }
-
-  gplusShare() {
-    SocialShareButton.openWindow(this.el.href, '600', '500', 'gplusWindow');
   }
 
   twitterShare() {
@@ -123,10 +118,6 @@ export default class SocialShareButton extends Domodule {
     body = encodeURIComponent(body);
 
     this.el.href = `mailto:?subject=${title}&body=${body}`;
-  }
-
-  gplusSetup() {
-    this.el.href = `${BASE_URLS.gplus}?url=${this.getShareUrl()}`;
   }
 
   linkedinSetup() {
