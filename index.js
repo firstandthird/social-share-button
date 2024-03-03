@@ -4,11 +4,12 @@ import Domodule from 'domodule';
 import { findOne, on } from 'domassist';
 
 const BASE_URLS = {
-  twitter: 'https://twitter.com/intent/tweet',
   facebook: 'https://www.facebook.com/sharer/sharer.php',
   linkedin: 'https://www.linkedin.com/shareArticle',
   pinterest: 'https://pinterest.com/pin/create/button',
-  reddit: 'https://reddit.com/submit'
+  reddit: 'https://reddit.com/submit',
+  twitter: 'https://twitter.com/intent/tweet',
+  whatsapp: 'https://api.whatsapp.com/send'
 };
 
 export default class SocialShareButton extends Domodule {
@@ -73,6 +74,10 @@ export default class SocialShareButton extends Domodule {
 
   redditShare() {
     SocialShareButton.openWindow(this.el.href, '600', '600', 'redditWindow');
+  }
+
+  whatsappShare() {
+    SocialShareButton.openWindow(this.el.href, '550', '400', 'whatsappWindow');
   }
 
   facebookShare() {
@@ -193,6 +198,17 @@ export default class SocialShareButton extends Domodule {
     }
 
     this.el.href = `${BASE_URLS.reddit}?${params.join('&')}`;
+  }
+
+  whatsappSetup() {
+    const shareText = this.options.text || SocialShareButton.getMeta('text');
+    const params = [];
+
+    if (shareText) {
+      params.push(`text=${encodeURIComponent(shareText)}`);
+    }
+
+    this.el.href = `${BASE_URLS.whatsapp}?${params.join('&')}`;
   }
 
   static getMeta(tag, prop = 'og') {
