@@ -126,22 +126,8 @@ export default class SocialShareButton extends Domodule {
   }
 
   linkedinSetup() {
-    const params = [
-      `url=${encodeURIComponent(this.getShareUrl())}`
-    ];
-
-    const shareText = this.options.text;
-    const shareTitle = this.options.title;
-
-    if (shareText) {
-      params.push(`summary=${encodeURIComponent(shareText)}`);
-    }
-
-    if (shareTitle) {
-      params.push(`title=${encodeURIComponent(shareTitle)}`);
-    }
-
-    this.el.href = `${BASE_URLS.linkedin}?mini=true&${params.join('&')}`;
+    // linkedin only allows the url param for security reasons:
+    this.el.href = `${BASE_URLS.linkedin}?mini=true&url=${encodeURIComponent(this.getShareUrl())}`;
   }
 
   twitterSetup() {
