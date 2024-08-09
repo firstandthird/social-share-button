@@ -134,6 +134,8 @@ export default class SocialShareButton extends Domodule {
     const shareText = this.options.text || SocialShareButton.getMeta('text', 'twi');
     const shareTag = this.options.tags || SocialShareButton.getMeta('hashtag', 'twi');
     const shareVia = this.options.via || SocialShareButton.getMeta('author', 'twi');
+    const shareImage = this.options.image || SocialShareButton.getMeta('image', 'twi');
+
     const params = [];
 
     params.push(`url=${encodeURIComponent(this.getShareUrl())}`);
@@ -150,6 +152,9 @@ export default class SocialShareButton extends Domodule {
       params.push(`via=${encodeURIComponent(shareVia)}`);
     }
 
+    if (shareImage) {
+      params.push(`media=${encodeURIComponent(shareImage)}`);
+    }
     this.el.href = `${BASE_URLS.twitter}?${params.join('&')}`;
   }
 
