@@ -9,6 +9,7 @@ const BASE_URLS = {
   pinterest: 'https://pinterest.com/pin/create/button',
   reddit: 'https://reddit.com/submit',
   twitter: 'https://twitter.com/intent/tweet',
+  bluesky: 'https://bsky.app/intent/compose',
   whatsapp: 'https://api.whatsapp.com/send'
 };
 
@@ -62,6 +63,10 @@ export default class SocialShareButton extends Domodule {
 
   twitterShare() {
     SocialShareButton.openWindow(this.el.href, '260', '500', 'twitterWindow');
+  }
+
+  blueSkyShare() {
+    SocialShareButton.openWindow(this.el.href, '260', '500', 'blueskyWindow');
   }
 
   linkedinShare() {
@@ -156,6 +161,18 @@ export default class SocialShareButton extends Domodule {
       params.push(`media=${encodeURIComponent(shareImage)}`);
     }
     this.el.href = `${BASE_URLS.twitter}?${params.join('&')}`;
+  }
+
+  blueskySetup() {
+    const shareText = this.options.text || SocialShareButton.getMeta('text', 'twi');
+    const params = [];
+    const fullText = `${shareText}\n${this.getShareUrl()}`;
+
+    if (shareText) {
+      params.push(`text=${encodeURIComponent(fullText)}`);
+    }
+
+    this.el.href = `${BASE_URLS.bluesky}?${params.join('&')}`;
   }
 
   pinterestSetup() {
